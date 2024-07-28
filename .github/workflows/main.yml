@@ -52,7 +52,10 @@ jobs:
 
     - name: Update kubeconfig
       run: |
-        aws eks update-kubeconfig --region us-west-2 --name my-cluster
+        aws eks update-kubeconfig --region us-west-2 --name test-cluster
 
     - name: Deploy to Kubernetes
-      run: kubectl apply -f k8s/
+      run: |
+          kubectl apply -f k8s/deployment.yml
+          kubectl apply -f k8s/service.yml
+          kubectl apply -f k8s/ingress.yml
